@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Psyched !!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/game.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <b>Welcome to Pysch Game !!!</b>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            Logged in as <b>"<span id="userName"></span>"</b>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="float-right">
+                                <b>Game Code:</b> <label id="room-name"><label>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs" id="psychGameTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="chat-tab" data-toggle="tab" href="#chat" role="tab"
+                                aria-controls="chat" aria-selected="true">Chat</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="game-tab" data-toggle="tab" href="#game" role="tab"
+                                aria-controls="game" aria-selected="false">Game</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="scores-tab" data-toggle="tab" href="#scores" role="tab"
+                                aria-controls="scores" aria-selected="false">Scores</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="chat" role="tabpanel" aria-labelledby="chat-tab">
+                            <div class="row mt-1">
+                                <div class="col-md-3">
+                                    <b>Users</b>
+                                    <ul id="users"></ul>
+                                </div>
+                                <div class="chat-messages col-md-9"></div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="game" role="tabpanel" aria-labelledby="game-tab">
+                            <div id="psych-Board">
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="scores" role="tabpanel" aria-labelledby="scores-tab">
+                            <h2>Score Board</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <form id="chat-form" class="form-inline">
+                        <div class="form-group col-md-10">
+                            <input id="msg" type="text" class="form-control col-md-10" placeholder="Enter Message"
+                                required autocomplete="off" />
+                        </div>
+                        <button class="btn btn-primary col-md-2">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+        integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4=" crossorigin="anonymous"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/game.js"></script>
+
+</body>
+
+</html>
