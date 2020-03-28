@@ -23,10 +23,11 @@ io.on("connection", socket => {
 
     socket.on("joinRoom", ({
         userName,
-        gameCode
+        gameCode,
+        isHost
     }) => {
 
-        const user = userJoin(socket.id, userName, gameCode);
+        const user = userJoin(socket.id, userName, gameCode, isHost);
 
         // join the game room
         socket.join(gameCode);
