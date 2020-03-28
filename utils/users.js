@@ -1,34 +1,44 @@
-const users = [];
+const {
+    users
+} = require('../utils/dbHelper');
 
-function userJoin(id, userName, gameCode) {
+function userJoin(id, userName, gameCode, isHost) {
     const user = {
         id,
         userName,
-        gameCode
+        gameCode,
+        isHost
     };
 
-    users.push(user);
+    users.insert(user);
 
     return user;
 }
 
 // Get current user
 function getCurrentUser(id) {
-    return users.find(user => user.id === id);
+    return users.findOne({
+        id: id
+    });
 }
 
 // User leaves chat
 function userLeave(id) {
-    const index = users.findIndex(user => user.id === id);
+    const user = users.findOne({
+        id: id
+    });
 
-    if (index !== -1) {
-        return users.splice(index, 1)[0];
+    if (user) {
+        users.remove(user);
+        return user;
     }
 }
 
 // Get room users
 function getRoomUsers(gameCode) {
-    return users.filter(user => user.gameCode === gameCode);
+    return users.find({
+        gameCode: gameCode
+    });
 }
 
 

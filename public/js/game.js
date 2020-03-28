@@ -2,18 +2,20 @@ const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
+const startGame = document.getElementById('startGame');
+
+startGame.style.display = 'none';
 
 const {
-    gameCode
+    userName,
+    gameCode,
+    isHost
 } = Qs.parse(location.search, {
     ignoreQueryPrefix: true
 });
 
-
-
 //get Username
 const user = document.getElementById("userName");
-userName = window.localStorage.getItem("userName");
 user.innerText = userName;
 
 // Initiate Socket operations
@@ -21,10 +23,10 @@ user.innerText = userName;
 const socket = io();
 
 // join gameroom
-
 socket.emit('joinRoom', {
     userName,
-    gameCode
+    gameCode,
+    isHost
 });
 
 // Get room and users
@@ -33,16 +35,23 @@ socket.on('roomUsers', ({
     users
 }) => {
     outputRoomName(room);
-
-    console.log(users);
     outputUsers(users);
+
+    // show play game button
+
+    if (users && users.length > 1) {
+        console.log(isHost);
+
+        if(isHost === true){
+            startGame.style.display = '';
+        }        
+    }
+
 });
 
 // Message from server
 socket.on('message', message => {
-    console.log(message);
     outputMessage(message);
-
     // Scroll down
     chatMessages.scrollTop = chatMessages.scrollHeight;
 });
@@ -60,7 +69,7 @@ chatForm.addEventListener('submit', e => {
 
     const chatTab = document.getElementById('chat-tab');
     chatTab.click();
-    
+
 
     // Clear input
     e.target.elements.msg.value = '';
